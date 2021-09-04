@@ -1,1 +1,26 @@
+// $primary: $blue !default 이므로 재정의 가능
+$primary: #FDC000;
+
+// Required
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+// required 아래에서 작성해야하는 경우는
+// $success 와 같이 이미 정의된 변수를 사용하는 경우이다
+// 이하의 키에 값으로 #------를 각각 준다면 상위에서 사용 가능
+
+// $theme-colors: (
+//   "primary":    $primary,
+//   "secondary":  $secondary,
+//   "success":    $success,
+//   "info":       $info,
+//   "warning":    $warning,
+//   "danger":     $danger,
+//   "light":      $light,
+//   "dark":       $dark
+// ) !default;
+
+
+
 @import "../../node_modules/bootstrap/scss/bootstrap"
