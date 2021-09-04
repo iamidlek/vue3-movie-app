@@ -7,6 +7,7 @@
         class="nav-item">
         <RouterLink
           :to="nav.href"
+          active-class="active"
           class="nav-link">
           {{ nav.name }}
         </RouterLink>
