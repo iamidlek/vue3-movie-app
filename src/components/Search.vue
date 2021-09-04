@@ -1,10 +1,11 @@
 <template>
   <div class="container">
     <input
-      v-model="titel"
+      v-model="title"
       class="form-control"
       type="text"
-      placeholder="Search for Movies, Series & more" />
+      placeholder="Search for Movies, Series & more"
+      @keyup.enter="apply" />
     <div class="selects">
       <select
         v-for="filter in filters"
@@ -23,16 +24,22 @@
         </option>
       </select>
     </div>
+    <button
+      class="btn btn-primary"
+      @click="apply">
+      Apply
+    </button>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 // $data = data()
 // data.title data.type 는 data["title"] data["type"]  과 같다
 export default {
   data(){
     return {
-      titel: '',
+      title: '',
       type: 'movie',
       number: 10,
       year: '',
@@ -58,6 +65,14 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    async apply() {
+      // async await 비동기 서버로 요청해서 내용 올때까지 기다림
+      const OMDB_API_KEY = '7035c60c'
+      const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${this.title}&type=${this.type}&y=${this.year}&page=1`)
+      console.log(res)
+    },
   }
 }
 </script>
@@ -81,6 +96,13 @@ export default {
         margin-right: 0;
       }
     }
+  }
+  .btn {
+    width: 120px;
+    height: 50px;
+    font-weight: 700;
+    // 너비 감소 방지
+    flex-shrink: 0;
   }
 }
 </style>
