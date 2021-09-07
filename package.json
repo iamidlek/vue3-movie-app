@@ -42,7 +42,9 @@
   "dependencies": {
     "axios": "^0.21.2",
     "bootstrap": "^5.0.0-beta3",
+    "lodash": "^4.17.21",
     "vue": "^3.0.7",
-    "vue-router": "^4.0.5"
+    "vue-router": "^4.0.5",
+    "vuex": "^4.0.2"
   }
 }

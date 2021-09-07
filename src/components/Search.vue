@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 // $data = data()
 // data.title data.type 는 data["title"] data["type"]  과 같다
 export default {
@@ -69,9 +69,20 @@ export default {
   methods: {
     async apply() {
       // async await 비동기 서버로 요청해서 내용 올때까지 기다림
-      const OMDB_API_KEY = '7035c60c'
-      const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${this.title}&type=${this.type}&y=${this.year}&page=1`)
-      console.log(res)
+      // const OMDB_API_KEY = '7035c60c'
+      // const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${this.title}&type=${this.type}&y=${this.year}&page=1`)
+      // console.log(res)
+
+      // store의 mutaions 실행시에는 .commit()
+      // acitons를 실행시에는 .dispatch()
+      this.$store.dispatch('movie/searchMovies', {
+        // 두번째 위치에 값들을 인자로 넘김
+        title: this.title,
+        type: this.type,
+        number: this.number,
+        year: this.year
+      })
+      // movie/searchMovies는 모듈에 설정한 movie라는 이름과 import된 파일 즉 movie.js의 내부 함수
     },
   }
 }
