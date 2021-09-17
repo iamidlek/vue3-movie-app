@@ -44,7 +44,8 @@ export default {
     // 비동기 동작
   actions:{
     // searchMovies( { state, getters, commit }){
-      // 객체 분해 해서 가져오거나 context를 매개변수로 사용해서 가져오기 가능
+      // 객체 분해 해서 가져오거나 
+      // context를 매개변수로 사용해서 가져오기 가능
       // context.state
       // context.getters
       // context.commit (mutations) 활용가능
