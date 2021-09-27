@@ -8,7 +8,7 @@ export default {
   state: function () {
     return{
       movies: [],
-      message: '',
+      message: 'Search for the Movie title!',
       loading: false
     }
   },
@@ -54,6 +54,10 @@ export default {
     // payload는 함수 실행시 들어오는 인자
     // async searchMovies (context, payload) {
     async searchMovies ({ commit, state }, payload) {
+      commit('updateState', {
+        message: ''
+      })
+      
       try {
         const res = await _fetchMovie({
           ...payload, 
