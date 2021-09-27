@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <div class="inner">
+      <div class="message">
+        {{ message }}
+      </div>
       <MovieItem
         v-for="movie in movies"
         :key="movie.imdbID"
@@ -25,6 +28,9 @@ export default {
     movies() {
       // 스토어 데이터 모듈 값 // 값의 반응성을 위해 computed에서 사용
       return this.$store.state.movie.movies
+    },
+    message() {
+      return this.$store.state.movie.message
     }
   }
 }
