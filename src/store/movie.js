@@ -54,8 +54,12 @@ export default {
     // payload는 함수 실행시 들어오는 인자
     // async searchMovies (context, payload) {
     async searchMovies ({ commit, state }, payload) {
+      // 가지고 오는 중이면 실행 안됨
+      if (state.loading) return
+      
       commit('updateState', {
-        message: ''
+        message: '',
+        loading: true
       })
       
       try {
@@ -99,6 +103,10 @@ export default {
         commit('updateState', {
           movies: [],
           message
+        })
+      } finally {
+        commit('updateState', {
+          loading: false
         })
       }
     }
