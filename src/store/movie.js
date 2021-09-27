@@ -54,41 +54,48 @@ export default {
     // payload는 함수 실행시 들어오는 인자
     // async searchMovies (context, payload) {
     async searchMovies ({ commit, state }, payload) {
-      const res = await _fetchMovie({
-        ...payload, 
-        page: 1
-      })
-      const { Search, totalResults } = res.data
-      // context.commit('assignMovies', Search)
-      // context.commit('updateState', {
-      commit('updateState', {
-        movies: _uniqBy(Search, 'imdbID'),
-        // message: 'hello',
-        // loading: true
-      })
-      
-      // 총 검색 수 string으로 넘어옴
-      const total = parseInt(totalResults, 10)
-      // 올림 처리
-      const pageLength = Math.ceil(total / 10)
-
-      // 추가 요청
-      if (pageLength > 1) {
-        for (let page = 2; page <= pageLength; page++) {
-          // 최대 페이지 설정한 부분
-          if (page > (payload.number / 10 )) break
-
-          const res = await _fetchMovie({
-            ...payload,
-            page
-          })
-          const { Search } = res.data
-          commit('updateState', {
-            movies: [
-              ...state.movies, 
-              ..._uniqBy(Search,'imdbID')]
-          })
+      try {
+        const res = await _fetchMovie({
+          ...payload, 
+          page: 1
+        })
+        const { Search, totalResults } = res.data
+        // context.commit('assignMovies', Search)
+        // context.commit('updateState', {
+        commit('updateState', {
+          movies: _uniqBy(Search, 'imdbID'),
+          // message: 'hello',
+          // loading: true
+        })
+        
+        // 총 검색 수 string으로 넘어옴
+        const total = parseInt(totalResults, 10)
+        // 올림 처리
+        const pageLength = Math.ceil(total / 10)
+  
+        // 추가 요청
+        if (pageLength > 1) {
+          for (let page = 2; page <= pageLength; page++) {
+            // 최대 페이지 설정한 부분
+            if (page > (payload.number / 10 )) break
+  
+            const res = await _fetchMovie({
+              ...payload,
+              page
+            })
+            const { Search } = res.data
+            commit('updateState', {
+              movies: [
+                ...state.movies, 
+                ..._uniqBy(Search,'imdbID')]
+            })
+          }
         }
+      } catch (message) {
+        commit('updateState', {
+          movies: [],
+          message
+        })
       }
     }
   }
@@ -103,6 +110,10 @@ function _fetchMovie(payload) {
   return new Promise((resolve, reject) => {
     axios.get(url)
       .then(res => {
+        // 잘못된 요청을 보내도 응답이 오는 경우(응답 내부에 에러)
+        if (res.data.Error) {
+          reject(res.data.Error)
+        }
         resolve(res)
       })
       .catch(err => {
