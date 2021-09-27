@@ -39,12 +39,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~/scss/style";
+
 .container {
+  margin-top: 30px;
+  .inner {
+    background-color: $gray-200;
+    padding: 10px 0;
+    border-radius: 4px;
+  }
   .movies {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
 }
-
 </style>
