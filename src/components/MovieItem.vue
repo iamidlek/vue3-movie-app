@@ -40,8 +40,13 @@ export default {
   },
   methods: {
     async init() {
-      await this.$loadimage(this.movie.Poster)
-      this.imageLoading = false
+      const poster = this.moive.Poster
+      if (!poster || poster === 'N/A') {
+        this.imageLoading = false
+      } else {
+        await this.$loadimage(poster)
+        this.imageLoading = false
+      }
       // const img = document.createElement('img')
       // img.src = this.movie.Poster
       // // 화살표함수는 defalult 전체에서 this
