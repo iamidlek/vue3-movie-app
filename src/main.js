@@ -8,8 +8,11 @@ import router from './routes'
 // import store from './store/index.js'
 import store from './store'
 // import '~/scss/style.scss'
+import loadImage from './plugins/loadImage'
+
 
 createApp(App)
   .use(router)
   .use(store)
+  .use(loadImage)
   .mount('#app')
