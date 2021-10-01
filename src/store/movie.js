@@ -7,14 +7,14 @@ export default {
   // 모듈화 된다는것을 명시적으로 표현
   namespaced: true,
   // 취급해야하는 데이터
-  state: function () {
-    return{
+   // 상태(State)는 함수로 만들어서 
+   // 객체 데이터를 반환해야 가변 이슈(데이터 불변성)가 발생하지 않는다
+  state: () => ({
       movies: [],
       message: _defaultMessage,
       loading: false,
       theMovie: {}
-    }
-  },
+    }),
   // 화살표 함수 축약형
   // state: () => ({ movies: []})
 
@@ -37,7 +37,6 @@ export default {
       Object.keys(payload).forEach(key => {
         state[key] = payload[key]
       })
-
     },
     resetMovies(state) {
       state.movies = []
