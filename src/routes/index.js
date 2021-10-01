@@ -8,6 +8,9 @@ export default createRouter({
   // hash, history 모드
   // 해쉬 모드 사용 .com/#/페이지
   history: createWebHashHistory(),
+  scrollBehavior() {
+    return { top: 0 }
+  },
   routes:[
     {
       path: '/',

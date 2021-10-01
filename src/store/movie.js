@@ -1,6 +1,8 @@
 import axios from 'axios'
 import _uniqBy from 'lodash/uniqBy'
 
+const _defaultMessage = 'Search for the Movie title!'
+
 export default {
   // 모듈화 된다는것을 명시적으로 표현
   namespaced: true,
@@ -8,7 +10,7 @@ export default {
   state: function () {
     return{
       movies: [],
-      message: 'Search for the Movie title!',
+      message: _defaultMessage,
       loading: false,
       theMovie: {}
     }
@@ -39,6 +41,8 @@ export default {
     },
     resetMovies(state) {
       state.movies = []
+      state.message =_defaultMessage
+      state.loading =false
     }
   },
     // 직접적으로 데이터를 수정할 수 없음
