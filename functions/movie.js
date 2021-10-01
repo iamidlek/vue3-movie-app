@@ -1,11 +1,11 @@
 // node.js
 const axios = require('axios')
+const OMDB_API_KEY = process.env.OMDB_API_KEY
 // exports.handler = async function (event, context) {
 // }
 exports.handler = async function (event) {
   const payload = JSON.parse(event.body)
   const { title, type, year, page, id } = payload  
-  const OMDB_API_KEY = '7035c60c'
   // 단일, 여러
   const url = id 
   ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}` 
