@@ -76,6 +76,8 @@
 </template>
 
 <script>
+// import { mapState, mapActions } from 'vuex';
+import { mapState } from 'vuex';
 import Loader from '~/components/Loader';
 
 export default {
@@ -88,20 +90,30 @@ export default {
     }
   },
   computed: {
-    theMovie() {
-      return this.$store.state.movie.theMovie
-    },
-    loading() {
-      return this.$store.state.movie.loading
-    }
+    ...mapState('movie', [
+      'theMovie',
+      'loading'
+    ])
+    // theMovie() {
+    //   return this.$store.state.movie.theMovie
+    // },
+    // loading() {
+    //   return this.$store.state.movie.loading
+    // }
   },
   created() {
-    // console.log(this.$route)
+    console.log(this.$route)
     this.$store.dispatch('movie/searchMovieWithId', {
       id: this.$route.params.id
+    // this.searchMovieWithId({
+    //   id: this.$route.params.id
     })
   },
   methods: {
+    // dispatch로 가져오는 방법도 있고 헬퍼로 가져오는 법도 있긴 하다
+    // ...mapActions('movie', [
+      // 'searchMovieWithId'
+    // ]),
     requestDiffSizeImage(url, size = 700) {
       if (!url || url === 'N/A') {
         this.imageLoading = false

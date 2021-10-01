@@ -60,8 +60,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/style";
-
 .movie {
   $width: 200px;
   width: $width;

@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import MovieItem from '~/components/MovieItem';
 import Loader from '~/components/Loader';
 
@@ -36,23 +37,26 @@ export default {
   //   }
   // }
   computed: {
-    movies() {
+    ...mapState('movie', [
+      'movies',
+      'message',
+      'loading'
+    ]),
+    // movies() {
       // 스토어 데이터 모듈 값 // 값의 반응성을 위해 computed에서 사용
-      return this.$store.state.movie.movies
-    },
-    message() {
-      return this.$store.state.movie.message
-    },
-    loading() {
-      return this.$store.state.movie.loading
-    }
+    //   return this.$store.state.movie.movies
+    // },
+    // message() {
+    //   return this.$store.state.movie.message
+    // },
+    // loading() {
+    //   return this.$store.state.movie.loading
+    // }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/style";
-
 .container {
   margin-top: 30px;
   .inner {
