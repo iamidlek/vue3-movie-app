@@ -89,6 +89,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~/scss/style";
+
 .container {
   display: flex;
   > * {
@@ -114,6 +116,24 @@ export default {
     font-weight: 700;
     // 너비 감소 방지
     flex-shrink: 0;
+  }
+  @include media-breakpoint-down(lg) {
+    // flex에서 수직으로 변경
+    display: block;
+    input {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    .selects {
+      margin-right: 0;
+      margin-bottom: 10px;
+      select {
+        width: 100%;
+      }
+    }
+    .btn {
+      width: 100%;
+    }
   }
 }
 </style>
