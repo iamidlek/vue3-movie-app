@@ -4,8 +4,8 @@ export default {
   state: () => ({
     name: 'yoo',
     email: 'iamidlek@naver.com',
-    blog: 'none',
+    blog: 'https://heropy.blog',
     phone: '+82-01-1234-5678',
-    image: 'none'
+    image: 'https://heropy.blog/css/images/logo.png'
   })
 }
